@@ -121,7 +121,7 @@ body {
 
 /* Game container */
 .game-container {
-  width: calc(45vw - 100px);
+  width: calc(65vw - 100px);
   max-width: 800px;
   background: #fff;
   height: calc(100vh - 250px);
