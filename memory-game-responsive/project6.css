@@ -67,148 +67,108 @@
   75% { transform: rotate(-15deg); }
 }
 
-/* 🍉 Fruit Border Container */
-.fruit-border {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none; /* Ensures game elements remain interactive */
-    z-index: 999;
-}
-
-/* 🍎 Individual Fruit Border Items */
-.fruit-item {
-    font-size: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* 🎮 Centered Game Container */
-.game-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: min(90vw, 600px); /* Responsive width */
-    background: #fff;
-    border: 5px solid #333;
-    border-radius: 10px;
-    padding: 20px;
-    z-index: 1000;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-/* 🃏 Game Grid */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-/* 🔘 Buttons */
-button {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background: #6fa3ef;
-    color: white;
-}
-
-button:hover {
-    background: #5c8fd6;
-}
-/* 🎭 Assign Animations */
-.pivot-dance { animation: pivotDance 0.6s infinite; }
-.bounce-dance { animation: bounceDance 0.6s infinite; }
-.top-pivot-dance { animation: topPivotDance 0.6s infinite; }
-.surprise-dance { animation: surpriseDance 0.6s infinite; }
-.swing-dance { animation: swingDance 0.8s infinite ease-in-out; }
-.jitter-dance { animation: jitterDance 0.3s infinite; }
-.spin-dance { animation: spinDance 1.5s linear infinite; }
-.float-dance { animation: floatDance 1.2s infinite ease-in-out; }
-
-/* ✅ Matched cards stay green & fruit keeps dancing */
-.card.match .card-front, 
-.card.match .card-back {
-  background: green !important;
-}
-
-/* 🎊 Confetti Animation 🎊 */
-@keyframes confetti-fall {
-  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
-}
-
-/* Container for confetti */
-.confetti-container {
+/* Container for confetti and fruit border */
+.confetti-container, .fruit-border {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  pointer-events: none; /* Prevents interaction */
-  overflow: hidden;
+  pointer-events: none;
   z-index: 9999;
+  overflow: hidden;
 }
 
-/* Each confetti piece */
+/* Confetti styling */
 .confetti {
   position: absolute;
   width: 10px;
   height: 10px;
-  background: red; /* Default color */
   opacity: 0.8;
   animation: confetti-fall 3s linear infinite;
 }
 
-/* 🎨 Different colors for confetti */
+/* Confetti colors */
 .confetti:nth-child(odd) { background: blue; }
 .confetti:nth-child(even) { background: yellow; }
 .confetti:nth-child(3n) { background: green; }
 .confetti:nth-child(4n) { background: orange; }
 .confetti:nth-child(5n) { background: pink; }
 
+/* Fruit border items */
+.fruit-item {
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-
-/* General Styling */
+/* General styling */
 body {
   font-family: Arial, sans-serif;
   text-align: center;
-  background-color: #f5f5dc; /* Beige background */
+  background-color: #f5f5dc;
   margin: 0;
   padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
 }
 
+/* Game container */
 .game-container {
-  width: 80%;
-  max-width: 600px;
-  margin: auto;
-  padding: 20px;
+  width: 40vw;
+  max-width: 800px;
   background: #fff;
-  border: 2px solid #333;
+  height: 60vh;
+  border: 1px solid #333;
   border-radius: 10px;
+  padding: 40px;
+  z-index: 1000;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-h1 {
+.controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+/* Headings and text */
+h1, .info {
   margin-bottom: 20px;
 }
 
+@media (max-width: 600px) {
+  h1 {
+    display: none;
+  }
+}
+
 .info {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
   margin-bottom: 20px;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 10vw);
   gap: 10px;
   margin-bottom: 20px;
+  align-self: center;
 }
 
+/* Card styles */
 .card {
   width: 100%;
   aspect-ratio: 1 / 1;
@@ -229,6 +189,7 @@ h1 {
   transform: rotateY(180deg);
 }
 
+/* Card faces */
 .card-front, .card-back {
   position: absolute;
   width: 100%;
@@ -243,13 +204,49 @@ h1 {
 }
 
 .card-front {
-  background: #6fa3ef; /* Light blue */
+  background: #6fa3ef;
   color: white;
 }
 
 .card-back {
-  background: #d3d3d3; /* Light gray inside */
+  background: #d3d3d3;
   color: black;
   transform: rotateY(180deg);
-  display: flex;
 }
+
+/* Button styles */
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background: #6fa3ef;
+  color: white;
+}
+
+button:hover {
+  background: #5c8fd6;
+}
+
+/* Animations */
+.pivot-dance { animation: pivotDance 0.6s infinite; }
+.bounce-dance { animation: bounceDance 0.6s infinite; }
+.top-pivot-dance { animation: topPivotDance 0.6s infinite; }
+.surprise-dance { animation: surpriseDance 0.6s infinite; }
+.swing-dance { animation: swingDance 0.8s infinite ease-in-out; }
+.jitter-dance { animation: jitterDance 0.3s infinite; }
+.spin-dance { animation: spinDance 1.5s linear infinite; }
+.float-dance { animation: floatDance 1.2s infinite ease-in-out; }
+
+/* Matched cards styling */
+.card.match .card-front, 
+.card.match .card-back {
+  background: green !important;
+}
+
+/* Confetti animation */
+@keyframes confetti-fall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
