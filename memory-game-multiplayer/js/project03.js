@@ -136,6 +136,7 @@ function checkForMatch() {
     card1.classList.add("matched");
     card2.classList.add("matched");
     card1.classList.add(playerOne ? "playerOne" : "playerTwo");
+    card2.classList.add(playerOne ? "playerOne" : "playerTwo");
     playerOne ? playerOneScore++ : playerTwoScore++;
     scoreCounter.textContent = playerOne ? playerOneScore : playerTwoScore;
     flippedCards = [];
@@ -180,6 +181,8 @@ function resetGameInfo() {
 restartBtn.addEventListener("click", () => {
   gameContainer.classList.add("hidden");
   welcomeContainer.classList.remove("hidden");
+  body.classList.remove("playerOne");
+  body.classList.remove("playerTwo");
   clearInterval(timerInterval); // ✅ Fix: Clear the timer on restart
   resetGameInfo();
 });
