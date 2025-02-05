@@ -115,11 +115,13 @@ body {
   align-items: center;
   height: 100vh;
   flex-direction: column;
+  overflow: hidden;
+  padding-bottom: 50px;
 }
 
 /* Game container */
 .game-container {
-  width: 40vw;
+  width: 45vw;
   max-width: 800px;
   background: #fff;
   height: 60vh;
@@ -133,6 +135,9 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .controls {
@@ -162,10 +167,22 @@ h1, .info {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, 10vw);
+  grid-template-columns: repeat(4, 1fr);
   gap: 10px;
   margin-bottom: 20px;
-  align-self: center;
+  justify-content: center;
+  width: 100%;
+}
+
+@media (min-width: 1000px) {
+  .grid {
+    width: 50%;
+  }
+}
+
+.grid > * {
+  max-height: 12vh;
+  max-width: 12vh;
 }
 
 /* Card styles */
@@ -199,7 +216,7 @@ h1, .info {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 36px;
+  font-size: 20px;
   transition: background 0.3s;
 }
 
